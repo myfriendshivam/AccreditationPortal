@@ -1,0 +1,64 @@
+<div class="contain">
+    <%- include ("./nav4") %>
+  </div>
+  <div class="contain mb-2">
+    <div class="navbar mt-4 navbar-dark bg-light justify-content-center border border-success" id="textarea">
+  
+      <h4 class="card-title font-weight-bold ">
+        <h2 class="text-success ">View Syllabus</h2>
+  
+      </h4>
+    </div>
+  </div>
+  
+  <div class="card mr-2 ml-2">
+    <%- include ("./messages") %>
+  
+  
+  
+      <div class="card card-outline card-primary">
+        
+        <div class="card-body text-center align-items-center">
+          <table id="myTable" class="table text-center align-items-center tabe-hover table-bordered table-responsive table-condensed " id="parent">
+  
+            <thead class="text-center align-items-center justify-content-center">
+              <tr>
+                <th>Syllabus Name </th>
+                <th>Branch & Year</th>
+                <th>Semester</th>
+                <th>Uploaded Date</th>
+                <th>View</th>
+                <th>Download</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+  
+            <tbody>
+                <% for(var i = (users.length-1); i>= 0 ; i--) { %>
+                
+              <tr>
+                <td><b class="text-uppercase"><%=users[i].name%></b></td>
+                <td ><b><%=users[i].branch%> , <%=users[i].branch_year%> year</b></td>
+                <td ><b><%=users[i].session%>,<%=users[i].year%></b></td>
+                <td ><b><%=moment(users[i].dateAdded).format( 'ddd, Do MMM YYYY')%></b></td>
+                <td><a href="<%=users[i].viewLink%>" target="_blank"  class="btn btn-success btn-sm btn-flat view_parcel"><i class="fas fa-eye "></i></a></td>
+                <td><a href="<%=users[i].downloadLink%>"  class="btn btn-primary btn-sm btn-flat view_parcel"><i class="fas fa-download"></i></a></td>
+                <td class="text-center">
+                  
+                    
+                    <a href="/delete_syllabus_<%= users[i]._id %>"  class="btn btn-danger btn-flat view_parcel"
+                      onclick="return confirm('Are you confirm want to delete');">
+                      <i class="fas fa-trash"></i>
+                    </a>
+  
+                  
+                  
+                </td>
+              </tr>
+              <% } %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      </div>
+  </div>

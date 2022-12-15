@@ -1,0 +1,114 @@
+
+
+    <div class="contain">
+        <%- include ("./nav4") %>
+      </div>
+      <div class="contain mb-2">
+          <div class="navbar mt-4 navbar-dark bg-light justify-content-center border border-success" id="textarea">
+  
+              <h4 class="card-title font-weight-bold ">
+                  <h2 class="text-success ">Teacher Profile </h2>
+              </h4>
+          </div>
+      </div>
+  
+      <div class="contain mb-2">
+      </section class="contain">
+      
+      <%- include ("./messages") %>
+      <section style="background-color: #eee;">
+          <div class="container mt-4 mb-4 py-5">
+            
+        
+            <div class="row">
+              <div class="col-lg-4">
+                <div class="card mb-4">
+                  <div class="card-body text-center">
+                    <img src="./../assets/student.png" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+                    <h5 class="my-3"><%= name %></h5>
+                    <p class="text-muted mb-1"><%= department %></p>
+                    <p class="text-muted mb-4">Teacher</p>
+                    <div class="d-flex justify-content-center mb-2">
+                      <!-- <div class="row">
+                                    <div class="col">
+                      
+                          <a href="/edit_user_profile_<%=id %>" class="btn border-shadow btn-outline-primary ms-1 update">
+                              <span class="text-gradient"><i class="fas fa-pencil-alt"
+                                      style="color:blue">  </i> Edit </span>
+                              </a>
+                              <a href="/delete_student_<%=id %>" onclick="return confirm('Are you confirm want to delete');"  class="btn  border-shadow delete">
+                                        <span class="text-gradient"><i class="fas fa-trash "
+                                                style="color:red"></i></span>
+                                    </a>
+                          
+                        </div>
+                        </div>     -->
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+              <div class="col-lg-8">
+                <div class="card mb-4">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <p class="mb-0">Full Name :</p>
+                      </div>
+                      <div class="col-sm-9">
+                        <p class="text-muted mb-0"><%= name %></p>
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <p class="mb-0">Email :</p>
+                      </div>
+                      <div class="col-sm-9">
+                        <p class="text-muted mb-0"><%= email %></p>
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <p class="mb-0">Department : </p>
+                      </div>
+                      <div class="col-sm-9">
+                        <p class="text-muted mb-0"><%= department %> </p>
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <p class="mb-0">Phone No :</p>
+                      </div>
+                      <div class="col-sm-9">
+                        <p class="text-muted mb-0"><%=phoneno %> </p>
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                          <p class="mb-0">Qualification :</p>
+                        </div>
+                        <div class="col-sm-9">
+                          <p class="text-muted mb-0"><%=qualification %> </p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                          <p class="mb-0">Area of Reasearch :</p>
+                        </div>
+                        <div class="col-sm-9">
+                          <p class="text-muted mb-0"><%=roa %> </p>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+               
+        </section></div>
+     
+  
+      
+    

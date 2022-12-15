@@ -1,0 +1,74 @@
+<div class="contain">
+    <%- include ("./nav4") %>
+  </div>
+  <div class="contain mb-2">
+    <div class="navbar mt-4 navbar-dark bg-light justify-content-center border border-success" id="textarea">
+  
+      <h4 class="card-title font-weight-bold ">
+        <h2 class="text-success ">View Collection of Internship Data</h2>
+  
+      </h4>
+    </div>
+  </div>
+  
+  <div class="card mr-2 ml-2">
+    <%- include ("./messages") %>
+  
+  
+  
+      <div class="card card-outline card-primary">
+        <div class="card-body">
+          <table id="myTable" class="table tabe-hover table-bordered table-responsive table-condensed " id="parent">
+  
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Branch</th>
+                <th>Batch</th>
+                <th>Company Name</th>
+                <th>Stipand</th>
+                <th>Role</th>
+                <th>Project Name</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>View</th>
+                <th>Download</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+  
+            <tbody>
+              <% for(var i = (users.length-1); i>= 0 ; i--) { %>
+              <tr>
+                
+                <td><b><%=users[i].name%></b></td>
+                <td><b><%=users[i].branch%></b></td>
+                <td><b><%=users[i].batch%></b></td>
+                <td><b><%=users[i].internship_info.company%></b></td>
+                <td><b><%=users[i].internship_info.stipand%></b></td>
+                <td><b><%=users[i].internship_info.role%></b></td>
+                <td><b><%=users[i].internship_info.project%></b></td>
+                <td><b><%=users[i].internship_info.startdate%></b></td>
+                <td><b><%=users[i].internship_info.enddate%></b></td>
+                <td><a href="<%=users[i].internship_info.viewLink%>" target="_blank"  class="btn btn-success btn-sm btn-flat view_parcel"><i class="fas fa-eye "></i></a></td>
+                <td><a href="<%=users[i].internship_info.downloadLink%>"  class="btn btn-primary btn-sm btn-flat view_parcel"><i class="fas fa-download"></i></a></td>
+                
+  
+                <td class="text-center">
+                  <div class="btn-group">
+                    <a href="/delete_internship_<%= users[i].internship_info._id %>" onclick="return confirm('Are you confirm want to delete');"  class="btn border-shadow btn-danger delete" class="btn btn-success btn-flat">
+                      <i class="fas fa-trash"></i>
+                    </a>
+                    <a href="/update_internship_<%= users[i].internship_info._id %>" class="btn btn-success btn-flat view_parcel">
+                        <i class="fas fa-user-edit"></i>
+                      </a>
+                  </div>
+                </td>
+              </tr>
+              <% } %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      </div>
+  </div>

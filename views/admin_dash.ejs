@@ -1,0 +1,94 @@
+<div class="contain">
+  <%- include ("./nav2") %>
+</div>
+<div class="contain mb-2">
+  <div class="navbar mt-4 navbar-dark bg-light justify-content-center border border-success" id="textarea">
+
+    <h4 class="card-title font-weight-bold ">
+      <h2 class="text-success ">Coures Allotment to Faculty Members</h2>
+
+    </h4>
+  </div>
+</div>
+
+<div class="card mr-2 ml-2">
+  <%- include ("./messages") %>
+
+
+
+    <div class="card card-outline card-primary">
+
+      <div class="card-body text-center align-items-center">
+        <table id="myTable"
+          class="table text-center align-items-center tabe-hover table-bordered table-responsive table-condensed "
+          id="parent">
+
+          <thead class="text-center align-items-center justify-content-center">
+            <tr>
+              <th>Sub Code </th>
+              <th>Sub Name</th>
+              <th>Sub Department</th>
+              <th>Semester</th>
+              <th>Alloted To</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% for(var i=(users.length-1); i>= 0 ; i--) { %>
+
+              <tr>
+
+                <td><b class="text-uppercase">
+                    <%=users[i].sub_code%>
+                  </b></td>
+                <div class="text-center text-justify align-items-center vertical-align-middle">
+                  <td><b>
+                      <%=users[i].sub_name%>
+                    </b></td>
+                </div>
+                <td><b>
+                    <%=users[i].sub_dept%>
+                  </b></td>
+                <td><b>
+                    <%=users[i].semester%>
+                  </b></td>
+                <td>
+                  <% for(var j=(users[i].alloted_to.length-1); j>= 0 ; j--) { %>
+
+                    <b>
+                      <%=users[i].alloted_to[j].tea_name%> [ <%=users[i].alloted_to[j].alloted_branch%> ,
+                          <%=users[i].alloted_to[j].alloted_branch_year%> year , <%=users[i].alloted_to[j].alloted_sem%>
+                              , <%=users[i].alloted_to[j].alloted_session%>]</>
+                                <div class="btn-group">
+                                  <a href="/delete_assign_sub_<%= users[i]._id %>/<%= users[i].alloted_to[j]._id %>"
+                                    class="btn btn-danger btn-sm btn-flat view_parcel"
+                                    onclick="return confirm('Are you confirm want to delete');">
+                                    <i class="fas fa-trash "></i>
+                                  </a>
+
+                                </div> </br>
+                                <% } %>
+                </td>
+                <td class="text-center">
+                  <div class="btn-group">
+                    <a href="/assign_sub_<%= users[i]._id %>" class="btn btn-success btn-flat view_parcel">
+                      <i class="fas fa-user-edit"></i>
+                    </a>
+
+                    <a href="/delete_assign_sub_<%= users[i]._id %>" class="btn btn-danger btn-flat view_parcel"
+                      onclick="return confirm('Are you confirm want to delete');">
+                      <i class="fas fa-trash"></i>
+                    </a>
+
+
+                  </div>
+                </td>
+              </tr>
+              <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+</div>
+</div>

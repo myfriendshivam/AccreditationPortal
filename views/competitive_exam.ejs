@@ -1,0 +1,56 @@
+<div class="contain mb-2">
+    <div class="navbar mt-4 navbar-dark bg-light justify-content-center border border-success" id="textarea">
+  
+      <h4 class="card-title font-weight-bold ">
+        <h2 class="text-success ">Collection of Internship Data</h2>
+      </h4>
+    </div>
+  </div>
+  <div class="container mt-5">
+    <div class="card card-body">
+      <%- include ("./messages") %>
+        <form action="/collection_intern_exam_data" method="POST" enctype="multipart/form-data">
+          <div class="form-group">
+          <div class="row">
+            <div class="col">
+              <label for="rollno">Roll No</label>
+              <input type="text" id="rollno" name="rollno" class="form-control" placeholder="Enter Roll No"
+                value="<%= typeof rollno != 'undefined' ? rollno : '' %>" />
+            </div>
+            <div class="col">
+              <label for="exam">Competative Exam Name</label>
+              <input type="text" id="exam" name="exam" class="form-control" placeholder="Enter Competative Exam Name"
+                value="<%= typeof exam != 'undefined' ? exam : '' %>" />
+            </div>
+            <div class="col">
+              <label for="percentile">Percentile</label>
+              <input type="text" id="percentile" name="percentile" class="form-control" placeholder="Enter Percentile"
+                value="<%= typeof percentile != 'undefined' ? percentile : '' %>" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <label for="score">Score Card</label>
+              <input type="text" id="score" name="score" class="form-control" placeholder="Enter Score"
+                value="<%= typeof score != 'undefined' ? score : '' %>" />
+            </div>
+            <div class="col">
+              <label for="rank">Rank</label>
+              <input type="text" id="rank" name="rank" class="form-control" placeholder="Enter Rank"
+                value="<%= typeof rank != 'undefined' ? rank : '' %>" />
+            </div>
+            <div class="col">
+              <label for="date">Date</label>
+              <input type="date" id="date" name="date" class="form-control" placeholder="Enter Date"
+                value="<%= typeof date != 'undefined' ? date : '' %>" />
+            </div>
+          </div>
+          
+  
+            <button type="submit" class="btn btn-success btn-block my-2">
+              Submit
+            </button>
+        </form>
+    </div>
+  </div>
+  </div>

@@ -1,0 +1,60 @@
+
+<div class="contain mb-2">
+  <%- include ("./nav2") %>
+    <div class="navbar mt-4 navbar-dark bg-light justify-content-center border border-success" id="textarea">
+  
+      <h4 class="card-title font-weight-bold ">
+        <h2 class="text-success ">Subject Register Page</h2>
+      </h4>
+    </div>
+  </div>
+  <div class="container mt-5">
+    <div class="card card-body">
+      <%- include ("./messages") %>
+      <form action="/sub_register" method="POST">
+        <div class="form-group">
+          <label for="name">Sub Code</label>
+          <input type="text" id="name" name="sub_code" class="form-control" placeholder="Enter Sub Code"
+            value="<%= typeof sub_code != 'undefined' ? sub_code : '' %>" />
+        <small>Enter subject code in this format in capital letter ex. ISC S-101 .</small>
+        </div>
+  
+        <div class="form-group">
+          <label for="email">Sub Name</label>
+          <input type="text" id="email" name="sub_name" class="form-control" placeholder="Enter Sub Name"
+            value="<%= typeof sub_name != 'undefined' ? sub_name : '' %>" />
+        </div>
+        
+        <div class="form-group mt-2">
+          <div class="row">
+            <div class="col-md-4">
+              <label for="textarea">Select Subject Department:</label>
+            </div>
+            <div class="col-md-4">
+              <select class="form-select" aria-label="Default select example" name="sub_dept" id="textarea">
+              <option>Select Department</option>
+              <option value="PHYSICS">PHYSICS</option>
+              <option value="MATH"> MATH</option>
+              <option value="CSE"> COMPUTER SCIENCE</option>
+              <option value="CHEMISTRY"> CHEMISTRY</option>
+              <option value="ENGLISH"> ENGLISH</option>
+              <option value="OTHER"> OTHER</option>
+              
+              </select>
+            </div>
+          </div>
+        </div> 
+
+        <div class="form-group">
+          <label for="semester">Semester</label>
+          <input type="text" id="semester" name="semester" class="form-control" placeholder="Enter Semester"
+            value="<%= typeof semester != 'undefined' ? semester : '' %>" />
+        </div>
+        <button type="submit" class="btn btn-success btn-block">
+          Register
+        </button>
+      </form>
+    </div>
+  </div>
+  </div>
+  

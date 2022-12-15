@@ -1,0 +1,161 @@
+<div class="contain">
+  <%- include ("./nav2") %>
+</div>
+<div class="contain mb-2">
+  <div class="navbar mt-4 navbar-dark bg-light justify-content-center border border-success" id="textarea">
+
+    <h4 class="card-title font-weight-bold ">
+      <h2 class="text-success ">Assign Faculty </h2>
+    </h4>
+  </div>
+</div>
+
+<div class="card-body">
+  
+  <div class="container card ">
+    
+    <div class="col-lg-12">
+      <div class="row">
+        <div class="col-md-12 mt-4">
+          <div class="callout callout-info">
+            <dl>
+              <div class="row">
+                <dt>Subject ID : </dt>
+                <dd>
+                  <h5 class="text-danger"><b>&nbsp <%=users._id%> </b></h5>
+                </dd>
+              </div>
+          
+            </dl>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="callout callout-info">
+            <b class="border-bottom border-primary text-primary">Subject Information</b>
+            <dl>
+              <dt>Subject Code:</dt>
+              <dd><%=users.sub_code%></dd>
+              <dt>Subject Name:</dt>
+              <dd><%=users.sub_name%></dd>
+              <dt>Department:</dt>
+              <dd><%=users.sub_dept%> </dd>
+              <dt>Assign To:</dt>
+              <dd><%=users.assigned_to%></dd>
+              
+            </dl>
+          </div>
+          
+<div class="card">
+          <div class="card-body">
+
+            <%- include ("./messages") %>
+            <form  method="POST">
+              <div class="new_user">
+
+                <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="textarea">Select Branch :</label>
+                    <select class="form-select" aria-label="Default select example" name="alloted_branch" id="textarea">
+
+                      <option value="CSE">CSE</option>
+                      <option value="ECE"><b>ECE</b></option>
+                      <option value="MEE">MEE</option>
+
+                    </select>
+
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="textarea">Select Branch Year :</label>
+                    <select class="form-select" aria-label="Default select example" name="alloted_branch_year" id="textarea">
+
+                      <option value="1">1</option>
+                      <option value="2"><b>2</b></option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+
+                    </select>
+
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="textarea">Select Session :</label>
+                    <select class="form-select" aria-label="Default select example" name="alloted_sem" id="textarea">
+                      <option value="JULY-DEC">JULY-DEC</option>
+                      <option value="JAN-JUN"><b>JAN-JUN</b></option>
+
+                    </select>
+
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="textarea">Select Year :</label>
+                    <select class="form-select" aria-label="Default select example" name="alloted_session" id="textarea">
+
+                      <option value="2022">2022</option>
+                      <option value="2023"><b>2023</b></option>
+                      <option value="2024"><b>2024</b></option>
+                      <option value="2025"><b>2025</b></option>
+
+                    </select>
+
+                  </div>
+                </div>
+
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="textarea">Assign Subject</label>
+                    <select class="form-select" aria-label="Default select example" name="tea_name" id="textarea">
+                      
+                      
+                      <% for(var i = (datas.length-1); i>= 0 ; i--) { %>
+                      <option value="<%=datas[i].name %>">{<%=datas[i].name%>}</option>
+                      <% } %>
+                    </select>
+             
+                  </div>
+                </div>
+                
+                <div class="col-md-12">
+                  <div class="form-group d-none">
+                    <label for="textarea">Alloted by</label>
+                    <select class="form-select" aria-label="Default select example" name="alloted_by" id="textarea">
+                      
+                      
+                    
+                      <option value="<%=name %>"><%=name%></option>
+              
+                    </select>
+             
+                  </div>
+                </div>
+                
+                  <div class="row">
+                  <div class="col-lg-6">
+                  <a href="/admin_dashboard"  class="btn btn-secondary w-100 update">Cancel</a>
+                  </div>
+                  <div class="col-md-6">
+                  <button type="submit" id="submit" class="btn btn-success w-100 update">Assign Subject 
+                      </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>

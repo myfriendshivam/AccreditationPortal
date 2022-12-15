@@ -1,0 +1,70 @@
+<div class="contain mb-2">
+  <%- include ("./nav2") %>
+  <div class="navbar mt-4 navbar-dark bg-light justify-content-center border border-success" id="textarea">
+
+    <h4 class="card-title font-weight-bold ">
+      <h2 class="text-success ">Placement Data Page</h2>
+    </h4>
+  </div>
+</div>
+<div class="container mt-5">
+  <div class="card card-body">
+    <%- include ("./messages") %>
+      <form action="/placement_record" method="POST">
+        <div class="form-group">
+
+          <div class="row">
+          <div class="col ">
+            <label for="rollno">Roll No</label>
+            <input type="text" id="rollno" name="rollno" class="form-control" placeholder="Enter Roll No"
+              value="<%= rollno %>" />
+          </div>
+          <div class="col">
+            <label for="company">Company</label>
+            <input type="text" id="company" name="company" class="form-control" placeholder="Enter company"
+              value="<%= typeof company != 'undefined' ? company : '' %>" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label for="package">Package</label>
+            <input type="text" id="package" name="package" class="form-control" placeholder="Enter package"
+              value="<%= typeof package != 'undefined' ? package : '' %>" />
+          </div>
+          <div class="col">
+            <label for="role">Role</label>
+            <input type="text" id="role" name="role" class="form-control" placeholder="Enter Role"
+              value="<%= typeof role != 'undefined' ? role : '' %>" />
+          </div>
+          <div class="col">
+            <label for="joindate">joining Date</label>
+            <input type="date" id="joindate" name="joindate" class="form-control" placeholder="Enter joining Date"
+              value="<%= typeof joindate != 'undefined' ? joindate : '' %>" />
+          </div>
+        </div>
+       
+          <!-- <div class="form-group mt-2">
+          <div class="row">
+            <div class="col-md-4">
+              <label for="textarea">Select Subject Department:</label>
+            </div>
+            <div class="col-md-4">
+              <select class="form-select" aria-label="Default select example" name="sub_dept" id="textarea">
+              <option>Select Department</option>
+              <option value="PHYSICS">PHYSICS</option>
+              <option value="MATH"> MATH</option>
+              <option value="CSE"> COMPUTER SCIENCE</option>
+              <option value="CHEMISTRY"> CHEMISTRY</option>
+              
+              </select>
+            </div>
+          </div>
+        </div>  -->
+
+          <button type="submit" class="btn btn-success btn-block my-2">
+            Submit
+          </button>
+      </form>
+  </div>
+</div>
+</div>

@@ -1,0 +1,67 @@
+<div class="contain mb-2">
+  <%- include ("./nav2") %>
+  <div class="navbar mt-4 navbar-dark bg-light justify-content-center border border-success" id="textarea">
+
+    <h4 class="card-title font-weight-bold ">
+      <h2 class="text-success ">Collection of Internship Data Page</h2>
+    </h4>
+  </div>
+</div>
+<div class="container mt-5">
+  <div class="card card-body">
+
+    <%- include ("./messages") %>
+      <form action="/internship_record" method="POST"  enctype="multipart/form-data">
+        <div class="form-group">
+
+          <div class="row">
+            <div class="col ">
+              <label for="rollno">Roll No</label>
+              <input type="text" id="rollno" name="rollno" class="form-control" placeholder="Enter Roll No"
+                value="<%= rollno %>" />
+            </div>
+            <div class="col">
+              <label for="company">Company</label>
+              <input type="text" id="company" name="company" class="form-control" placeholder="Enter company"
+                value="<%= typeof company != 'undefined' ? company : '' %>" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <label for="stipand">Stipand</label>
+              <input type="text" id="stipand" name="stipand" class="form-control" placeholder="Enter Stipand"
+                value="<%= typeof stipand != 'undefined' ? stipand : '' %>" />
+            </div>
+            <div class="col">
+              <label for="role">Role</label>
+              <input type="text" id="role" name="role" class="form-control" placeholder="Enter Role"
+                value="<%= typeof role != 'undefined' ? role : '' %>" />
+            </div>
+            <div class="col">
+              <label for="project">Project Name</label>
+              <input type="text" id="project" name="project" class="form-control" placeholder="Enter Project Name"
+                value="<%= typeof project != 'undefined' ? project : '' %>" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <label for="startdate">Starting Date</label>
+              <input type="date" id="startdate" name="startdate" class="form-control"  placeholder="Enter Starting Date" value="<%= typeof startdate != 'undefined' ? startdate : '' %>" />
+            </div>
+            <div class="col">
+              <label for="enddate">Ending Date</label>
+              <input type="date" id="enddate" name="enddate" class="form-control" placeholder="Enter End Date"
+                value="<%= typeof enddate != 'undefined' ? enddate : '' %>" />
+            </div>
+            <div class="col">
+              <label for="file">Upload file</label>
+              <input type="file" id="file" name="file" class="form-control" />
+            </div>
+          </div>
+          <button type="submit" class="btn btn-success btn-block my-2">
+            Submit
+          </button>
+      </form>
+  </div>
+</div>
+</div>

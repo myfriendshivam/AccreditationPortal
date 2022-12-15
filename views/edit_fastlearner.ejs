@@ -1,0 +1,65 @@
+<div class="contain mb-2">
+    <%- include ("./nav2") %>
+    <div class="navbar mt-4 navbar-dark bg-light justify-content-center border border-success" id="textarea">
+  
+      <h4 class="card-title font-weight-bold ">
+        <h2 class="text-success ">Learner Activities Page</h2>
+      </h4>
+    </div>
+  </div>
+  <div class="container mt-5">
+    <div class="card card-body">
+      <%- include ("./messages") %>
+        <form action="/student_learner" method="POST">
+          <div class="form-group">
+  
+            <div class="row">
+            <div class="col ">
+              <label for="rollno">Roll No</label>
+              <input type="text" id="rollno" name="rollno" class="form-control" placeholder="Enter Roll No"
+                value="<%= users.rollno %>" />
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                  <label for="type">Select Types :</label>
+                  <select class="form-select" aria-label="Default select example" name="type" id="type">
+                    <option value="Slow Learner">Slow Learner</option>
+                    <option value="Fast Learner"><b>Fast Learner</b></option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="type">Select Session :</label>
+                  <select class="form-select" aria-label="Default select example" name="sessions" id="session">
+                    <option value="JULY-DEC">JULY-DEC</option>
+                    <option value="JAN-JUN"><b>JAN-JUN</b></option>
+                  </select>
+                </div>
+              </div>
+          </div>
+          <div class="row">
+            
+            <div class="col">
+              <label for="class">Special Class</label>
+              <input type="text" id="class" name="class" class="form-control" placeholder="Enter class"
+              value="<%= users.class %>"/>
+            </div>
+            <div class="col">
+              <label for="topic">Topic</label>
+              <input type="text" id="class" name="topic" class="form-control" placeholder="Enter topic"
+              value="<%= users.topic %>" />
+            </div>
+            <div class="col">
+              <label for="date">Date</label>
+              <input type="date" id="date" name="date" class="form-control" placeholder="Enter Date"
+              value="<%= users.date %>"/>
+            </div>
+          </div>
+            <button type="submit" class="btn btn-success btn-block my-2">
+              Submit
+            </button>
+        </form>
+    </div>
+  </div>
+  </div>

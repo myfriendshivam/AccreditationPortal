@@ -1,0 +1,183 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400&display=swap');
+*{
+	margin:0px;
+	padding:0px;
+	box-sizing: border-box;
+	font-family: 'Poppins', sans-serif;
+}
+.section{
+	width: 100%;
+	min-height: 100vh;
+	background-color: #ddd;
+}
+.containers{
+	width: 90%;
+	display: block;
+	margin:auto;
+	padding-top: 30px;
+}
+.content-section{
+	float: left;
+	width: 75%;
+}
+img{
+  border: 2px solid black;
+  border-radius: 60%;
+}
+.image-section{
+	float: right;
+	width: 20%;
+  margin-top: 27px;
+}
+.content-section .title{
+	text-transform: uppercase;
+	font-size: 28px;
+}
+.content-section .content h3{
+	margin-top: 10px;
+	color:#e40606;
+	font-size: 21px;
+}
+.content-section .content p{
+	margin-top: 5px;
+	font-family: sans-serif;
+	font-size: 15px;
+	line-height: 1.5;
+  text-align: center;
+  text-align: justify;
+}
+.content-section .content .button{
+	margin-top: 10px;
+}
+.content-section .content .button a{
+	background-color: #3d3d3d;
+	padding:12px 25px;
+	text-decoration: none;
+	color:#fff;
+	font-size: 15px;
+	letter-spacing: 1.5px;
+}
+.content-section .content .button a:hover{
+	background-color: #a52a2a;
+	color:#fff;
+}
+.content-section .social{
+	margin: 20px 30px;
+}
+.content-section .social i{
+	color:#a52a2a;
+	font-size: 20px;
+	padding:0px 5px;
+}
+.content-section .social i:hover{
+	color:#3d3d3d;
+}
+@media screen and (max-width: 768px){
+	.container{
+	width: 80%;
+	display: block;
+	margin:auto;
+	padding-top:40px;
+}
+.content-section{
+	float:none;
+	width:50%;
+	display: block;
+	margin:auto;
+}
+
+.image-section img{
+	width: 50%;
+	height: auto;
+	display: block;
+	margin:auto;
+}
+.content-section .title{
+	text-align: center;
+	font-size: 10px;
+}
+.content-section .content .button{
+	text-align: center;
+}
+.content-section .content .button a{
+	padding:6px 10px;
+}
+.content-section .social{
+	text-align: center;
+}
+
+}
+</style>
+<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+<div class="contain">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active px-2">
+              <a class="nav-link adi" href="/">Home</a>
+            </li>
+            <li class="nav-item active px-2">
+              <a class="nav-link adi" href="about">About</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav ml-auto">
+            
+            <li class="nav-item dropdown bg-dark">
+              <a class="nav-link  active px-2 dropdown-toggle bg-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" >
+                <i class="fas fa-user"></i>
+              </a>
+              <div class="dropdown-menu nav-item bg-dark" aria-labelledby="navbarDropdown">
+                <a class="nav-link adi" href="/login">Login</a>
+                
+                <a class="nav-link adi" href="/register">Student Register</a>
+    
+                <a class="nav-link adi" href="/tea_register">Teacher Register</a>
+                
+                <a class="nav-link adi" href="/logout">Logout</a>
+              </div>
+            </li>
+            <li class="nav-item active px-2">
+              <a class="nav-link adi" href="/contact_us">Contact Us</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+  </div>
+        <div class="section">
+            <div class="containers">
+                <div class="content-section">
+                    
+                    <div class="content">
+                       <h3>HOD's/Coordinator's Message</h3>
+                       <p>Department of Computer Science and Engineering was started in 1996 at the same time when the Institute was established.
+                        It offers following four year B.Tech programs having 60 seats in each.
+                        B.Tech in Computer Science & Engineering.
+                        B.Tech in Computer Science & Engineering Specialization in Artificial Intelligence.
+                        Department also offers PhD program.
+                        The department has been growing since then in various dimensions like infrastructural facilities, lab facilities and academic activities. It offers hard-core courses of Computer Science and Engineering, to provide the students detailed knowledge of computer hardware and software and also offers elective courses from various streams like Distributed Processing, Parallel Processing, Artificial Intelligence, Natural Language Processing, Advance Computer Networks, Advance DBMS, Multi-Core Architecture, etc. These electives would encourage, motivate the students for higher studies, and develop research interests in different areas. The syllabi and courseware are updated regularly to incorporate the innovative technologies as well as ensuring a firm grasp of core fundamentals. Department is well equipped with the state of art laboratory facilities and classrooms. Department has an enthusiastic team of faculty members who are always ready to help the students for their all round development.</p>
+                       <div class="button">
+                        <a href="">Read More</a>
+                       </div>
+                    </div>
+                    <div class="social">
+                        <a href=""><i class="fab fa-facebook-f"></i></a>
+                        <a href=""><i class="fab fa-twitter"></i></a>
+                        <a href=""><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="image-section">
+                    <img src="assets/Deepak-verma.png" alt="">
+                </div>
+            </div>
+            
+        </div>
+  
+  
+     
+     
+  </div>

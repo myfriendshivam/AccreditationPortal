@@ -1,0 +1,129 @@
+<div class="contain mb-2">
+  <%- include ("./nav2") %>
+  <div class="navbar mt-4 navbar-dark bg-light justify-content-center border border-success" id="textarea">
+
+    <h4 class="card-title font-weight-bold ">
+      <h2 class="text-success ">Preparation of Course File Page</h2>
+    </h4>
+  </div>
+</div>
+<div class="container mt-5">
+  <div class="card card-body">
+    <%- include ("./messages") %>
+      <form action="/documents" method="POST" enctype="multipart/form-data">
+
+        <div class="form-group">
+          <label for="name">File Name</label>
+          <input type="text" id="name" name="name" class="form-control" placeholder="Enter File Name"
+            required />
+        </div>
+
+        <div>
+          <label for="file">Upload file</label>
+          <input type="file" id="file" name="file" class="form-control" />
+        </div>
+
+        <div class="form-group mt-2">
+          <div class="row">
+        <div class="col-md-3">
+          <label for="textarea">Select Type</label>
+        </div>
+        <div class="col-md-3">
+
+          <select class="form-select" aria-label="Default select example" name="type" id="textarea"
+            required>
+            <option>Select Type</option>
+            <option value="TIMETABLE">TIMETABLE</option>
+            <option value="SYLLABUS">SYLLABUS</option>
+            <option value="POCO">POCO</option>
+            <option value="MIDSEM">MIDSEM</option>
+            <option value="ENDSEM">ENDSEM</option>
+            <option value="ASSIGNMENT">ASSIGNMENT</option>
+
+
+          </select>
+
+        </div>
+      </div>
+      </div>
+
+        <div class="form-group mt-2">
+          <div class="row">
+            <div class="col-md-3">
+              <label for="textarea">Select Branch:</label>
+            </div>
+            <div class="col-md-3">
+              <select class="form-select" aria-label="Default select example" name="branch" id="textarea"
+                required multiple>
+                <option>Select Branch</option>
+                <option value="CSE">CSE</option>
+                <option value="IT">IT</option>
+                <option value="ECE">ECE</option>
+                <option value="MEE">MEE</option>
+                <option value="MSME">MSME</option>
+                <option value="ALL">ALL</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label for="textarea">Select Branch Year:</label>
+            </div>
+            <div class="col-md-3">
+              <select class="form-select" aria-label="Default select example" name="branch_year" id="textarea"
+                required multiple>
+                <option>Select Branch Year</option>
+                <option value="1">1st Year</option>
+                <option value="2">2nd Year</option>
+                <option value="3">3rd Year</option>
+                <option value="4">4th Year</option>
+                <option value="All">All Year</option>
+
+
+              </select>
+            </div>
+          </div>
+        </div>
+        <small class="mt-2 mb-2">Note : Hold ctrl button to multiple select.</small>
+        <div class="form-group mt-2">
+          <div class="row">
+            <div class="col-md-3">
+              <label for="textarea">Select Year:</label>
+            </div>
+            <div class="col-md-3">
+
+              <select class="form-select" aria-label="Default select example" name="year" id="textarea"
+                required>
+                <option>Select Year</option>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+                <option value="2025">2025</option>
+
+              </select>
+            </div>
+
+            <div class="col-md-3">
+              <label for="textarea">Select Session:</label>
+            </div>
+            <div class="col-md-3">
+
+              <select class="form-select" aria-label="Default select example" name="session" id="textarea"
+                required>
+                <option>Select Session</option>
+                <option value="JULY-DEC">JULY-DEC</option>
+                <option value="JAN-JUN">JAN-JUN</option>
+
+
+              </select>
+
+            </div>
+          </div>
+        </div>
+
+
+
+        <button type="submit" class="btn btn-success btn-block">
+          Upload
+        </button>
+      </form>
+  </div>
+</div>
