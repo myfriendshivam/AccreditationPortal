@@ -30,6 +30,8 @@
                 <th>Score</th>
                 <th>Rank</th>
                 <th>Date for Exam</th>
+                <th>View</th>
+                <th>Download</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -38,22 +40,23 @@
               <% for(var i = (users.length-1); i>= 0 ; i--) { %>
               <tr>
   
-                
                 <td><b><%=users[i].name%></b></td>
                 <td><b><%=users[i].branch%></b></td>
                 <td><b><%=users[i].batch%></b></td>
-                <td><b><%=users[i].exam%></b></td>
-                <td><b><%=users[i].percentile%></b></td>
-                <td><b><%=users[i].score%></b></td>
-                <td><b><%=users[i].rank%></b></td>
-                <td><b><%=users[i].date%></b></td>
+                <td><b><%=users[i].exam_info.exam%></b></td>
+                <td><b><%=users[i].exam_info.percentile%></b></td>
+                <td><b><%=users[i].exam_info.score%></b></td>
+                <td><b><%=users[i].exam_info.rank%></b></td>
+                <td><b><%=users[i].exam_info.date%></b></td>
+                <td><a href="<%=users[i].exam_info.viewLink%>" target="_blank"  class="btn btn-success btn-sm btn-flat view_parcel"><i class="fas fa-eye "></i></a></td>
+                <td><a href="<%=users[i].exam_info.downloadLink%>"  class="btn btn-primary btn-sm btn-flat view_parcel"><i class="fas fa-download"></i></a></td>
                 
                 <td class="text-center">
                   <div class="btn-group">
-                    <a href="/delete_data_<%= users[i]._id %>" onclick="return confirm('Are you confirm want to delete');"  class="btn border-shadow btn-danger delete" class="btn btn-success btn-flat">
+                    <a href="/delete_exam_<%= users[i].exam_info._id %>" onclick="return confirm('Are you confirm want to delete');"  class="btn border-shadow btn-danger delete" class="btn btn-success btn-flat">
                       <i class="fas fa-trash"></i>
                     </a>
-                    <a href="/update_data_<%= users[i]._id %>" class="btn btn-success btn-flat view_parcel">
+                    <a href="/update_exam_<%= users[i].exam_info._id %>" class="btn btn-success btn-flat view_parcel">
                         <i class="fas fa-user-edit"></i>
                       </a>
                   </div>

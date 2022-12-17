@@ -16,6 +16,8 @@ const Placement = require("../models/Placement");
 const Internships = require("../models/Internship");
 const Internship = require("../models/Internship");
 const Learner = require("../models/Learner");
+const CompetitiveExams = require("../models/CompetitiveExam");
+const CompetitiveExam = require("../models/CompetitiveExam");
 
 /*=============================================================================*/
 // GOOGLE-DRIVE API STUFF
@@ -60,6 +62,13 @@ router.get("/internship_record", ensureAuthenticated, (req, res) => {
     rollno: req.user.rollno,
   });
 });
+
+//---------- Competitive Exam data -------//
+router.get("/exam_record", ensureAuthenticated, (req, res) => {
+  res.render("competitive_exam", {
+    rollno: req.user.rollno,
+  });
+});
 //------- user profile page router-------//
 router.get(
   "/User_profile",
@@ -79,7 +88,6 @@ router.get(
 router.get(
   "/teacher_profile",
   ensureAuthenticated,
-
   (req, res) =>
     res.render("teacher_profile", {
       id: req.user._id,
@@ -258,6 +266,20 @@ async function getInternship(req, res, next) {
   next();
 }
 
+//------------------ Competitive exam------------//
+async function getCompetitiveExam(req, res, next) {
+  let competitiveexam;
+  try {
+    competitiveexam = await CompetitiveExams.findById(req.params.id);
+    if (competitiveexam == null)
+      return res.status(404).json({ message: "Cannot find Document" });
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+  res.competitiveexam = competitiveexam;
+  next();
+}
+
 /*===================================================================*/
 // All middlewares lie here
 async function getDocument(req, res, next) {
@@ -411,6 +433,58 @@ router.post("/internship_record", async (req, res) => {
         // console.log(newDoc)
         req.flash("success_msg", "Uploaded Successfully!");
         res.redirect("../view_internship");
+      } catch (err) {
+        console.log(err.message);
+      }
+    });
+  });
+});
+
+// ------ Competitive Exam data-----//
+router.post("/exam_record", async (req, res) => {
+  if (res.files === null)
+    return res.status(400).json({ msg: "No file uploaded" });
+  const file = req.files.file;
+  const newName = Str.random(8) + file.name;
+  file.mv(`${__dirname}/../public/uploads/${newName}`, async (err) => {
+    if (err) {
+      console.log(err);
+      return res.status(500).send(err);
+    }
+
+    const filePath = `${__dirname}/../public/uploads/${newName}`;
+
+    // upload file
+    const id = await uploadFileToDrive(filePath, file.name);
+
+    // get its link
+    const link = await getFileLink(id);
+
+    fs.unlink(`${__dirname}/../public/uploads/${newName}`, async (err) => {
+      if (err) {
+        console.log(err);
+        return res.status(500).send(err);
+      }
+
+      let documentData;
+      try {
+        documentData = new CompetitiveExams({
+          rollno: req.body.rollno,
+          exam: req.body.exam,
+          percentile: req.body.percentile,
+          score: req.body.score,
+          rank: req.body.rank,
+          date: req.body.date,
+          fileName: newName,
+          downloadLink: link.webContentLink,
+          viewLink: link.webViewLink,
+          driveId: id,
+          uploadedBy: req.user.name,
+        });
+        const newDoc = await documentData.save();
+        // console.log(newDoc)
+        req.flash("success_msg", "Uploaded Successfully!");
+        res.redirect("../view_competitive_exam");
       } catch (err) {
         console.log(err.message);
       }
@@ -636,6 +710,30 @@ router.get("/view_fastlearner", function (req, res, next) {
     });
 });
 
+//----------------View data collection for Competitive Data----------//
+router.get("/view_competitive_exam", function (req, res, next) {
+  User.aggregate([
+    {
+      $lookup: {
+        from: "competitiveexams",
+        localField: "rollno",
+        foreignField: "rollno",
+        as: "exam_info",
+      },
+    },
+    {
+      $unwind: "$exam_info",
+    },
+  ])
+    .then((users) => {
+      res.render("view_competitive_exam", { users: users });
+      console.log(users);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+});
+
 // ========================================================================================================================
 
 // All delete routes lie here
@@ -850,6 +948,33 @@ router.get("/delete_internship_:id", getInternship, async (req, res) => {
     res.redirect("../view_internship");
   } catch (err) {}
 });
+//  delete collection of Competitive Exam data
+router.get("/delete_exam_:id", getCompetitiveExam, async (req, res) => {
+  const {
+    id,
+    rollno,
+    exam,
+    percentile,
+    score,
+    rank,
+    date,
+    viewLink,
+    downloadLink,
+    dateAdded,
+    url,
+    driveId,
+    uploadedBy,
+    views,
+  } = res.competitiveexam;
+
+  deleteFileFromDrive(driveId);
+
+  try {
+    await res.competitiveexam.remove();
+    req.flash("success_msg", "Deleted Successfully!");
+    res.redirect("../view_competitive_exam");
+  } catch (err) {}
+});
 
 //   delete Students register data
 router.get("/delete_student_:id", function (req, res) {
@@ -949,6 +1074,32 @@ router.post("/update_internship_:id", function (req, res) {
     } else {
       req.flash("success_msg", "Updated Successfully!");
       res.redirect("../view_internship");
+    }
+  });
+});
+
+/* UPDATE collection of Competitive Exam data */
+router.get("/update_exam_:id", function (req, res) {
+  console.log(req.params.id);
+  CompetitiveExam.findById(req.params.id, function (err, user) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(user);
+
+      res.render("edit_competitive_exam", { users: user });
+    }
+  });
+});
+router.post("/update_exam_:id", function (req, res) {
+  CompetitiveExam.findByIdAndUpdate(req.params.id, req.body, function (err) {
+    if (err) {
+      req.flash("error_msg", "Something went wrong! User could not updated.");
+      console.log(err);
+      res.redirect("" + req.params.id);
+    } else {
+      req.flash("success_msg", "Updated Successfully!");
+      res.redirect("../view_competitive_exam");
     }
   });
 });
@@ -1086,6 +1237,8 @@ router.get("/student_learner", ensureAuthenticated, (req, res) =>
   })
 );
 
+//-------------------------users router------------------------------------------------------------------//
+
 //--------- view all subject for users------//
 router.get("/user_admin_dashboard", function (req, res, next) {
   Subject.find({}, function (err, users) {
@@ -1096,6 +1249,128 @@ router.get("/user_admin_dashboard", function (req, res, next) {
       console.log(users);
     }
   });
+});
+
+//----------------View all Timetabe----------//
+router.get("/user_view_timetable", function (req, res, next) {
+  Documents.find({ type: "TIMETABLE" }, function (err, users) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("user_view_timetable", { users: users });
+      console.log(users);
+    }
+  });
+});
+
+//----------------View all Syllabus----------//
+router.get("/user_view_syllabus", function (req, res, next) {
+  Documents.find({ type: "SYLLABUS" }, function (err, users) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("user_view_syllabus", { users: users });
+      console.log(users);
+    }
+  });
+});
+//----------------View all POCO----------//
+router.get("/user_view_poco", function (req, res, next) {
+  Documents.find({ type: "POCO" }, function (err, users) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("user_view_poco", { users: users });
+      console.log(users);
+    }
+  });
+});
+//----------------View all Mid sem paper----------//
+router.get("/user_view_mid", function (req, res, next) {
+  Documents.find({ type: "MIDSEM" }, function (err, users) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("user_view_mid", { users: users });
+      console.log(users);
+    }
+  });
+});
+//----------------View all End sem paper----------//
+router.get("/user_view_end", function (req, res, next) {
+  Documents.find({ type: "ENDSEM" }, function (err, users) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("user_view_end", { users: users });
+      console.log(users);
+    }
+  });
+});
+//----------------View all Assignment----------//
+router.get("/user_view_assignment", function (req, res, next) {
+  Documents.find({ type: "ASSIGNMENT" }, function (err, users) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("user_view_assignment", { users: users });
+      console.log(users);
+    }
+  });
+});
+
+
+//----------------View users slow  learner ----------//
+router.get("/user_view_slowlearner", function (req, res, next) {
+  User.aggregate([
+    {
+      $lookup: {
+        from: "learners",
+        localField: "rollno",
+        foreignField: "rollno",
+        as: "learner_info",
+      },
+    },
+    {
+      $unwind: "$learner_info",
+    },
+    {
+      $match: { "learner_info.type": "Slow Learner" },
+    },
+  ])
+    .then((users) => {
+      res.render("user_view_slowlearner", { users: users });
+      console.log(users);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+});
+//----------------View users fast learner ----------//
+router.get("/user_view_fastlearner", function (req, res, next) {
+  User.aggregate([
+    {
+      $lookup: {
+        from: "learners",
+        localField: "rollno",
+        foreignField: "rollno",
+        as: "flearner_info",
+      },
+    },
+    {
+      $unwind: "$flearner_info",
+    },
+    {
+      $match: { "flearner_info.type": "Fast Learner" },
+    },
+  ])
+    .then((users) => {
+      res.render("user_view_fastlearner", { users: users });
+      console.log(users);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 });
 
 module.exports = router;

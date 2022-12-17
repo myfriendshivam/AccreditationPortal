@@ -505,7 +505,7 @@ exports.Learner = (req, res) => {
 
 }
 
-//--------- data slow and fast---//
+
 
 
 

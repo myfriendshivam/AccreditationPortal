@@ -1,0 +1,56 @@
+<div class="contain">
+    <%- include ("./nav1") %>
+  </div>
+  <div class="contain mb-2">
+    <div class="navbar mt-4 navbar-dark bg-light justify-content-center border border-success" id="textarea">
+  
+      <h4 class="card-title font-weight-bold ">
+        <h2 class="text-success ">View slow learner Data</h2>
+  
+      </h4>
+    </div>
+  </div>
+  
+  <div class="card mr-2 ml-2">
+    <%- include ("./messages") %>
+  
+  
+  
+      <div class="card card-outline card-primary">
+        <div class="card-body">
+          <table id="myTable" class="table tabe-hover table-bordered table-responsive table-condensed " id="parent">
+  
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Branch</th>
+                <th>Session</th>
+                <th>Year</th>
+                <th>Special Class</th>
+                <th>Topics</th>
+                <th>Assign Date</th>
+            
+              </tr>
+            </thead>
+  
+            <tbody>
+              <% for(var i = (users.length-1); i>= 0 ; i--) { %>
+              <tr>
+  
+                
+                <td><b><%=users[i].name%></b></td>
+                <td><b><%=users[i].branch%></b></td>
+                <td><b><%=users[i].learner_info.sessions%></b></td>
+                <td><b><%=users[i].year%></b></td>
+                <td><b><%=users[i].learner_info.class%></b></td>
+                <td><b><%=users[i].learner_info.topic%></b></td>
+                <td><b><%=users[i].learner_info.date%></b></td>
+                
+              </tr>
+              <% } %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      </div>
+  </div>

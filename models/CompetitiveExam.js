@@ -20,27 +20,26 @@ const CompetitiveExamSchema = mongoose.Schema({
     date: {
         type: String
     },
-    // downloadLink: {
-    //     type: Array,
-    //     required: true
-    // },
-
-    // viewLink: {
-    //     type: Array,
-    //     required: true
-    // },
-    // driveId: {
-    //     type: Array,
-    //     required: true
-    // },
-    // uploadedBy: {
-    //     type: Array,
-    //     required: true
-    // },
-    // views:{
-    //     type:Number,
-    //     default:0
-    // },
+    downloadLink: {
+        type: String,
+        required: true
+    },
+    viewLink: {
+        type: String,
+        required: true
+    },
+    driveId: {
+        type: String,
+        required: true
+    },
+    uploadedBy: {
+        type: String,
+        required: true
+    },
+    views:{
+        type:Number,
+        default:0
+    },
     dateAdded: {
         type: Date,
         required: true,
